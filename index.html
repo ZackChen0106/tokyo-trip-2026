@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>東京獨旅 2026｜5/21–5/27</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  color-scheme: light;
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --bg: #f4f6f8;
+  --accent: #d94f3d;
+  --gold: #b08000;
+  --teal: #1e7a63;
+  --blue: #1a5fa0;
+  --muted: #7a8290;
+  --border: #e2e6ea;
+  --tag-food: #d94f3d;
+  --tag-shop: #1e7a63;
+  --tag-move: #1a5fa0;
+  --tag-play: #6b3fa8;
+  --tag-rest: #8a7a60;
+}
+html { background: #f4f6f8; }
+body { font-family: -apple-system, 'PingFang TC', 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #fdf6ee 0%, #eef3fb 100%);
+  border-bottom: 3px solid var(--accent);
+  padding: 40px 24px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: 'TOKYO';
+  position: absolute;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 120px;
+  color: rgba(0,0,0,0.04);
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 12px;
+}
+.hero-sub { font-size: 11px; letter-spacing: 4px; color: var(--accent); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+.hero-title { font-family: Georgia, 'Times New Roman', serif; font-size: 40px; color: var(--ink); line-height: 1.2; margin-bottom: 8px; }
+.hero-date { font-size: 13px; color: var(--muted); letter-spacing: 1px; }
+
+/* TABS */
+.tab-nav {
+  background: var(--paper);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex: 0 0 auto;
+  padding: 13px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.tab-btn:hover { color: var(--ink); background: var(--bg); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* CONTENT */
+.tab-content { display: none; padding: 28px 20px 60px; max-width: 680px; margin: 0 auto; }
+.tab-content.active { display: block; }
+
+/* DAY HEADER */
+.day-header { display: flex; align-items: flex-end; gap: 16px; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.day-num { font-family: Georgia, 'Times New Roman', serif; font-size: 54px; color: var(--accent); line-height: 1; opacity: 0.85; }
+.day-date { font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-bottom: 4px; }
+.day-title { font-size: 18px; font-weight: 700; color: var(--ink); }
+.day-note { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* LEGEND */
+
+/* TIMELINE */
+.timeline { position: relative; }
+.timeline::before { content: ''; position: absolute; left: 52px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+.tl-item { display: flex; gap: 14px; margin-bottom: 4px; animation: fadeUp 0.25s ease both; }
+.tl-item:nth-child(1){animation-delay:.04s} .tl-item:nth-child(2){animation-delay:.08s}
+.tl-item:nth-child(3){animation-delay:.12s} .tl-item:nth-child(4){animation-delay:.16s}
+.tl-item:nth-child(5){animation-delay:.20s} .tl-item:nth-child(6){animation-delay:.24s}
+.tl-item:nth-child(7){animation-delay:.28s} .tl-item:nth-child(8){animation-delay:.32s}
+.tl-item:nth-child(9){animation-delay:.36s} .tl-item:nth-child(10){animation-delay:.40s}
+.tl-time { width: 52px; flex-shrink: 0; font-size: 11px; color: var(--muted); padding-top: 13px; text-align: right; line-height: 1.3; }
+.tl-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 16px; position: relative; z-index: 1; }
+.tl-body { flex: 1; padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--border); border-left-width: 3px; background: var(--paper); }
+.tl-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.tl-body p  { font-size: 12px; color: #555; line-height: 1.65; }
+.tl-body .note { font-size: 11px; margin-top: 5px; color: var(--muted); font-style: italic; }
+
+.type-food .tl-dot { background: var(--tag-food); }
+.type-food .tl-body { border-left-color: var(--tag-food); background: #fff8f7; }
+.type-shop .tl-dot { background: var(--tag-shop); }
+.type-shop .tl-body { border-left-color: var(--tag-shop); background: #f4fbf8; }
+.type-move .tl-dot { background: var(--tag-move); }
+.type-move .tl-body { border-left-color: var(--tag-move); background: #f4f8ff; }
+.type-play .tl-dot { background: var(--tag-play); }
+.type-play .tl-body { border-left-color: var(--tag-play); background: #f8f5ff; }
+.type-rest .tl-dot { background: var(--tag-rest); }
+.type-rest .tl-body { border-left-color: var(--tag-rest); background: #faf8f4; }
+
+.tag { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 10px; font-weight: 700; margin-left: 4px; vertical-align: middle; }
+.tag-food { background: rgba(217,79,61,.12); color: var(--tag-food); }
+.tag-shop { background: rgba(30,122,99,.12); color: var(--tag-shop); }
+.tag-move { background: rgba(26,95,160,.12); color: var(--tag-move); }
+.tag-play { background: rgba(107,63,168,.12); color: var(--tag-play); }
+.tag-rest { background: rgba(138,122,96,.12); color: var(--tag-rest); }
+
+/* TIP / POKE BOX */
+.tip-box { background: #fffbf0; border: 1px solid #e8d060; border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 12px 14px; margin: 14px 0; font-size: 12px; line-height: 1.75; color: #3a2e00; }
+.tip-box strong { color: var(--gold); display: block; margin-bottom: 4px; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+/* ── EDIT MODE ── */
+.edit-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(217,79,61,0.4);
+  z-index: 500;
+  display: none;
+}
+.edit-fab.visible { display: block; }
+.edit-mode-bar {
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  position: sticky;
+  top: 48px;
+  z-index: 99;
+  display: none;
+}
+.edit-mode-bar.visible { display: block; }
+
+/* tl-item edit controls */
+.tl-edit-btn {
+  flex-shrink: 0;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 8px;
+  align-self: flex-start;
+  margin-top: 12px;
+  white-space: nowrap;
+}
+.tl-del-btn {
+  flex-shrink: 0;
+  background: #fee;
+  color: #e74c3c;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 8px;
+  align-self: flex-start;
+  margin-top: 12px;
+  white-space: nowrap;
+}
+.tl-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #f0f4ff;
+  color: #1a5fa0;
+  border: 1px solid #c8d8f0;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-top: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tl-nav-btn:hover { background: #dce8ff; }
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  align-items: flex-end;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--paper);
+  border-radius: 20px 20px 0 0;
+  padding: 24px 20px 40px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.modal-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+.modal-field { margin-bottom: 12px; }
+.modal-field label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 4px; font-weight: 600; letter-spacing: 0.5px; }
+.modal-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: var(--paper);
+  font-family: -apple-system, 'PingFang TC', sans-serif;
+}
+.modal-input:focus { border-color: var(--accent); }
+.modal-select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: var(--paper);
+  appearance: none;
+}
+.modal-btns { display: flex; gap: 8px; margin-top: 16px; }
+.modal-btn-save { flex: 1; background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 13px; font-size: 15px; font-weight: 700; cursor: pointer; }
+.modal-btn-cancel { background: var(--bg); color: var(--muted); border: none; border-radius: 10px; padding: 13px 20px; font-size: 15px; cursor: pointer; }
+.modal-btn-delete { background: #fee; color: #e74c3c; border: none; border-radius: 10px; padding: 13px 16px; font-size: 15px; cursor: pointer; }
+.add-item-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 12px;
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  transition: all 0.15s;
+}
+.add-item-btn:hover { border-color: var(--accent); color: var(--accent); }
+.edit-active .add-item-btn { display: flex; }
+
+
+/* ── HOME PAGE ── */
+.home-content { padding: 24px 16px 60px; max-width: 680px; margin: 0 auto; }
+
+/* Countdown */
+.countdown-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2a1a3e 100%);
+  border-radius: 16px;
+  padding: 22px 16px;
+  text-align: center;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.countdown-card::before {
+  content: '';
+}
+.countdown-label { font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
+.countdown-nums { display: flex; justify-content: center; align-items: flex-start; gap: 6px; flex-wrap: nowrap; }
+.cnt-block { text-align: center; flex: 1; min-width: 0; }
+.cnt-num {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(28px, 8vw, 44px);
+  color: #fff;
+  line-height: 1;
+  display: block;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 6px 2px;
+  width: 100%;
+}
+.cnt-unit { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; margin-top: 5px; display: block; }
+.cnt-sep { font-size: 28px; color: rgba(255,255,255,0.3); line-height: 1; padding-top: 6px; flex-shrink: 0; }
+.countdown-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 14px; }
+.countdown-gone { font-size: 16px; color: #7fffb0; font-weight: 700; margin-top: 8px; }
+
+/* Weather */
+.section-title { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin: 24px 0 12px; }
+.weather-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 8px; }
+.weather-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 4px;
+  text-align: center;
+}
+.weather-card.today { border-color: var(--accent); background: #fff8f7; }
+.wc-date { font-size: 9px; color: var(--muted); margin-bottom: 5px; }
+.wc-icon { font-size: 22px; line-height: 1; margin-bottom: 5px; }
+.wc-temp { font-size: 12px; font-weight: 700; color: var(--ink); }
+.wc-temp span { font-size: 10px; font-weight: 400; color: var(--muted); }
+.wc-desc { font-size: 9px; color: var(--muted); margin-top: 3px; }
+.weather-note { font-size: 11px; color: var(--muted); background: var(--paper); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; line-height: 1.6; }
+
+/* Ledger */
+.ledger-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 8px;
+}
+.ledger-input-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.ledger-select { border: 1px solid var(--border); border-radius: 6px; padding: 7px 6px; font-size: 12px; background: var(--bg); outline: none; cursor: pointer; flex-shrink: 0; }
+.ledger-input { flex: 1; min-width: 80px; border: 1px solid var(--border); border-radius: 6px; padding: 7px 10px; font-size: 13px; outline: none; background: var(--paper); }
+.ledger-input:focus { border-color: var(--accent); }
+.ledger-amt { max-width: 90px; }
+.ledger-btn { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 8px 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+.ledger-summary { background: var(--ink); color: #fff; border-radius: 10px; padding: 14px 16px; margin-bottom: 8px; }
+.ledger-total-row { display: flex; justify-content: space-between; align-items: center; padding: 2px 0; }
+.ledger-day-label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; padding: 10px 2px 4px; }
+.ledger-entry { background: var(--paper); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; font-size: 13px; margin-bottom: 4px; }
+.le-cat { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.le-item { flex: 1; color: var(--ink); }
+.le-amt { font-weight: 700; color: var(--blue); white-space: nowrap; }
+.le-del { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 14px; padding: 0 2px; }
+.le-del:hover { color: var(--accent); }
+
+
+/* Ledger list scrollable */
+#ledgerList { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+#ledgerList::-webkit-scrollbar { width: 4px; }
+#ledgerList::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* Shopping List */
+.sl-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; background: var(--paper); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 6px; transition: all 0.2s; }
+.sl-item.checked { opacity: 0.4; background: var(--bg); }
+.sl-item.checked .sl-name { text-decoration: line-through; }
+.sl-img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; flex-shrink: 0; border: 1px solid var(--border); cursor: zoom-in; transition: opacity 0.15s; }
+.sl-img:hover { opacity: 0.85; }
+.sl-info { flex: 1; min-width: 0; }
+.sl-name { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.sl-jp { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.sl-where { font-size: 11px; color: var(--blue); margin-bottom: 3px; }
+.sl-cat { background: rgba(26,95,160,0.1); color: var(--blue); padding: 1px 6px; border-radius: 8px; font-size: 10px; font-weight: 700; margin-left: 4px; }
+.sl-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.sl-check { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--border); background: none; font-size: 16px; color: var(--border); cursor: pointer; transition: all 0.2s; align-self: center; }
+.sl-item.checked .sl-check { background: var(--teal); border-color: var(--teal); color: #fff; }
+.sl-summary { background: var(--ink); color: #fff; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+.sl-summary-label { font-size: 12px; opacity: 0.7; }
+.sl-summary-count { font-family: Georgia, serif; font-size: 20px; }
+
+.sl-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+.sl-group-title { font-size: 13px; font-weight: 700; }
+.sl-group-count { font-size: 11px; opacity: 0.7; font-weight: 600; }
+.sl-day-badge {
+  display: inline-block;
+  background: rgba(26,95,160,0.12);
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-left: 4px;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+}
+.lightbox-name {
+  position: absolute;
+  bottom: 24px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-sub">Solo Trip · 2026</div>
+  <div class="hero-title">東京獨旅</div>
+  <div class="hero-date">5月21日（四）→ 5月27日（三）｜7天6夜</div>
+</div>
+
+<div class="tab-nav">
+  <button data-tab="home" class="tab-btn active" onclick="switchTab('home',this)">🏠 首頁</button>
+  <button data-tab="d1" class="tab-btn" onclick="switchTab('d1',this)">D1 抵達·大塚</button>
+  <button data-tab="d2" class="tab-btn" onclick="switchTab('d2',this)">D2 江之島·鐮倉</button>
+  <button data-tab="d3" class="tab-btn" onclick="switchTab('d3',this)">D3 原宿·涉谷·惠比壽</button>
+  <button data-tab="d4" class="tab-btn" onclick="switchTab('d4',this)">D4 上野·秋葉原</button>
+  <button data-tab="d5" class="tab-btn" onclick="switchTab('d5',this)">D5 川越·スパジャポ</button>
+  <button data-tab="d6" class="tab-btn" onclick="switchTab('d6',this)">D6 銀座</button>
+  <button data-tab="d7" class="tab-btn" onclick="switchTab('d7',this)">D7 返台</button>
+  <button data-tab="shop" class="tab-btn" onclick="switchTab('shop',this)">🛒 購物清單</button>
+</div>
+
+<!-- HOME -->
+<div class="tab-content active" id="tab-home">
+  <div class="home-content">
+
+    <!-- 倒數計時 -->
+    <div class="countdown-card" id="countdownCard">
+      <div class="countdown-label">距離出發還有</div>
+      <div class="countdown-nums" id="cntNums">
+        <div class="cnt-block"><span class="cnt-num" id="cntD">--</span><span class="cnt-unit">天</span></div>
+        <div class="cnt-sep">:</div>
+        <div class="cnt-block"><span class="cnt-num" id="cntH">--</span><span class="cnt-unit">小時</span></div>
+        <div class="cnt-sep">:</div>
+        <div class="cnt-block"><span class="cnt-num" id="cntM">--</span><span class="cnt-unit">分</span></div>
+        <div class="cnt-sep">:</div>
+        <div class="cnt-block"><span class="cnt-num" id="cntS">--</span><span class="cnt-unit">秒</span></div>
+      </div>
+      <div class="countdown-sub" id="cntSub">5月21日（四）早上 08:00 出門</div>
+      <div class="countdown-gone" id="cntGone" style="display:none;"></div>
+    </div>
+
+    <!-- 氣候預報 -->
+    <div class="section-title">🌤 東京即時天氣預報</div>
+    <div id="weatherLoading" style="text-align:center;padding:20px;color:var(--muted);font-size:13px;">載入中…</div>
+    <div class="weather-grid" id="weatherGrid" style="display:none;"></div>
+    <div class="weather-note" id="weatherNote" style="display:none;"></div>
+
+    <!-- 記帳系統 -->
+    <div class="section-title">💴 旅遊記帳</div>
+    <div class="ledger-card">
+      <div class="ledger-input-row">
+        <select class="ledger-select" id="ledgerDay">
+          <option value="D1">D1 5/21</option>
+          <option value="D2">D2 5/22</option>
+          <option value="D3">D3 5/23</option>
+          <option value="D4">D4 5/24</option>
+          <option value="D5">D5 5/25</option>
+          <option value="D6">D6 5/26</option>
+          <option value="D7">D7 5/27</option>
+        </select>
+        <select class="ledger-select" id="ledgerCat">
+          <option value="🍜 餐飲">🍜 餐飲</option>
+          <option value="🛍 購物">🛍 購物</option>
+          <option value="🚇 交通">🚇 交通</option>
+          <option value="🎟 景點">🎟 景點</option>
+          <option value="🏨 住宿">🏨 住宿</option>
+          <option value="💊 雜項">💊 雜項</option>
+        </select>
+        <select class="ledger-select" id="ledgerCurrency" onchange="toggleRateRow()">
+          <option value="JPY">¥ 日幣</option>
+          <option value="TWD">NT$ 台幣</option>
+        </select>
+      </div>
+      <div class="ledger-input-row" style="margin-top:8px;" id="ledgerRateRow">
+        <span style="font-size:11px;color:var(--muted);white-space:nowrap;">匯率 1¥ =</span>
+        <input class="ledger-input" type="number" id="ledgerRate" value="0.22" step="0.001" style="max-width:80px;">
+        <span style="font-size:11px;color:var(--muted);">NT$</span>
+      </div>
+      <div class="ledger-input-row" style="margin-top:8px;">
+        <input class="ledger-input" type="text" id="ledgerItem" placeholder="品項（例：一蘭拉麵）">
+        <input class="ledger-input ledger-amt" type="number" id="ledgerAmt" placeholder="金額">
+        <button class="ledger-btn" onclick="addEntry()">新增</button>
+      </div>
+    </div>
+
+    <!-- 記帳總覽 -->
+    <div class="ledger-summary" id="ledgerSummary" style="display:none;">
+      <div class="ledger-total-row">
+        <span>日幣總計</span>
+        <span id="ledgerTotalJPY" style="font-weight:700;font-size:15px;color:#7dd4f0;">¥ 0</span>
+      </div>
+      <div class="ledger-total-row">
+        <span>台幣總計</span>
+        <span id="ledgerTotalTWD" style="font-weight:700;font-size:15px;color:var(--accent);">NT$ 0</span>
+      </div>
+      <div class="ledger-total-row" style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;border-top:1px solid rgba(255,255,255,0.1);padding-top:6px;">
+        <span>日幣依各筆匯率換算後合計</span>
+      </div>
+    </div>
+    <div id="ledgerList" style="max-height:340px;overflow-y:auto;"></div>
+
+  </div>
+</div>
+
+<!-- ITINERARY TABS (JS-driven) -->
+<div id="itinerary-tabs-container"></div>
+
+<!-- SHOP (JS-driven) -->
+<div class="tab-content" id="tab-shop">
+  <div class="day-header">
+    <div class="day-num" style="font-size:34px;line-height:1.4;">🛒</div>
+    <div class="day-info">
+      <div class="day-date">購物清單</div>
+      <div class="day-title">對照商品，買了打勾</div>
+      <div class="day-note" id="shop-count-note">共 0 件｜點右邊圓圈標記已購買</div>
+    </div>
+  </div>
+  <button class="add-item-btn" id="shopAddBtn" onclick="openAddShop()" style="display:none;">＋ 新增品項</button>
+  <div class="sl-summary">
+    <div class="sl-summary-label">已購買</div>
+    <div><span class="sl-summary-count" id="sl-count">0</span><span style="font-size:13px;opacity:0.6;"> / <span id="sl-total">0</span> 件</span></div>
+  </div>
+  <div id="shop-list"></div>
+</div>
+
+
+
+<!-- Edit mode bar -->
+<div class="edit-mode-bar" id="editBar">✏️ 編輯模式 — 點項目旁的圖示來修改或刪除</div>
+
+<!-- Edit / Add modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <div class="modal-title" id="modalTitle">編輯活動</div>
+    <div class="modal-field">
+      <label>時間</label>
+      <input class="modal-input" id="mTime" placeholder="例：10:00">
+    </div>
+    <div class="modal-field">
+      <label>類型</label>
+      <select class="modal-select" id="mType">
+        <option value="move">🚇 交通</option>
+        <option value="food">🍜 餐飲</option>
+        <option value="shop">🛍 購物</option>
+        <option value="play">🎌 景點</option>
+        <option value="rest">🏨 休息</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label>地點／活動名稱</label>
+      <input class="modal-input" id="mTitle" placeholder="例：HOKA 涉谷店">
+    </div>
+    <div class="modal-field">
+      <label>說明</label>
+      <textarea class="modal-input" id="mDesc" rows="3" placeholder="補充說明…" style="resize:vertical;"></textarea>
+    </div>
+    <div class="modal-field">
+      <label>備註（小字）</label>
+      <input class="modal-input" id="mNote" placeholder="例：⏰ 11:00 開門">
+    </div>
+    <div class="modal-btns">
+      <button class="modal-btn-cancel" onclick="closeModal()">取消</button>
+      <button class="modal-btn-delete" id="modalDeleteBtn" onclick="deleteItinItem()" style="display:none;">刪除</button>
+      <button class="modal-btn-save" onclick="saveItinItem()">儲存</button>
+    </div>
+  </div>
+</div>
+
+<!-- Shop modal -->
+<div class="modal-overlay" id="shopModalOverlay">
+  <div class="modal-box">
+    <div class="modal-title" id="shopModalTitle">編輯品項</div>
+    <div class="modal-field">
+      <label>類別</label>
+      <input class="modal-input" id="smCat" placeholder="選擇或輸入類別" list="catList">
+      <datalist id="catList">
+        <option value="💊 助眠">
+        <option value="🦷 口腔">
+        <option value="🧴 護膚">
+        <option value="👟 鞋">
+        <option value="👕 服飾">
+        <option value="🏠 家電">
+        <option value="🧥 服裝">
+        <option value="⚡ 3C">
+        <option value="🍬 食品">
+        <option value="📝 文具">
+        <option value="🎮 玩具">
+        <option value="📦 生活用品">
+      </datalist>
+    </div>
+    <div class="modal-field">
+      <label>品名（中文）</label>
+      <input class="modal-input" id="smName" placeholder="例：DHC GABA 助眠">
+    </div>
+    <div class="modal-field">
+      <label>日文名稱</label>
+      <input class="modal-input" id="smJp" placeholder="例：DHC GABA 200mg">
+    </div>
+    <div class="modal-field">
+      <label>購買地點</label>
+      <input class="modal-input" id="smWhere" placeholder="例：唐吉訶德 涉谷道玄坂">
+    </div>
+    <div class="modal-field">
+      <label>建議天</label>
+      <select class="modal-select" id="smDay">
+        <option value="D3">D3 5/23</option>
+        <option value="D3+">D3+（任一天）</option>
+        <option value="D4">D4 5/24</option>
+        <option value="D5">D5 5/25</option>
+        <option value="D6">D6 5/26</option>
+        <option value="D7">D7 5/27</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label>備註</label>
+      <input class="modal-input" id="smNote" placeholder="例：壓力大適用">
+    </div>
+    <div class="modal-btns">
+      <button class="modal-btn-cancel" onclick="closeShopModal()">取消</button>
+      <button class="modal-btn-delete" id="shopDeleteBtn" onclick="deleteShopItem()" style="display:none;">刪除</button>
+      <button class="modal-btn-save" onclick="saveShopItem()">儲存</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit FAB -->
+<button class="edit-fab visible" id="editFab" onclick="toggleEditMode()">✏️ 編輯</button>
+
+<script>
+// ══════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════
+const DEFAULT_DAYS = [
+  { id:'d1', date:'5月21日（四）', title:'抵達東京・大塚 Check-in', note:'✈️ 捷星 GK014｜桃園 13:10 → 成田 17:35',
+    items:[
+      {id:'d1_1',time:'08:30',type:'move',title:'出門前往桃園機場',desc:'13:10 起飛，08:30 出門、10:40 到機場完成報到。入境卡在飛機上先填好，備好日幣現金。',note:'✈️ 捷星日本 GK014｜訂單 JW1GRJ',map:'https://maps.google.com/?q=桃園國際機場'},
+      {id:'d1_2',time:'17:35',type:'move',title:'抵達成田，入境 + 換 Suica',desc:'換 Suica IC 卡（儲值 ¥3,000 起）、確認口袋 WiFi 或 eSIM。搭京成 Skyliner → 日暮里，轉 JR 山手線 → 大塚，全程約 70 分鐘。',note:'',map:'https://maps.google.com/?q=成田国際空港'},
+      {id:'d1_3',time:'19:10',type:'rest',title:'🏨 APA 飯店大塚站前塔樓 Check-in',desc:'放行李、換輕便裝備。大塚站步行即達，JR 山手線 3 分鐘到池袋。',note:'住宿費 JPY 61,199（6晚）｜訂單 1713148487',map:'https://maps.google.com/?q=APA+Hotel+Yamanote+Otsuka+Ekimae+Tower'},
+      {id:'d1_4',time:'19:45',type:'food',title:'晚餐・大塚或池袋',desc:'推薦一蘭拉麵（池袋店，獨立座位適合獨旅），或大塚站南口的居酒屋。飛了一整天，吃頓好的。',note:'',map:'https://maps.google.com/?q=一蘭+池袋店'},
+      {id:'d1_5',time:'21:00',type:'play',title:'🎮 寶可夢中心 MEGA TOKYO（選擇性）',desc:'池袋 SUNSHINE CITY 60 大樓 2F，步行約 10 分鐘。如果抵達時還有精神可以去，開到 20:00。若太累就改到其他天。',note:'⏰ 10:00–20:00｜注意抵達時間，別撲空',map:'https://maps.google.com/?q=ポケモンセンターメガトーキョー+池袋'},
+      {id:'d1_6',time:'22:00',type:'rest',title:'早點休息',desc:'明天江之島要早出發，確認好交通路線，早點就寢。',note:'',map:''},
+    ]
+  },
+  { id:'d2', date:'5月22日（五）', title:'江之島・鐮倉一日遊', note:'🌊 鐵路拍照 + 江之島 + 鐮倉',
+    items:[
+      {id:'d2_1',time:'07:30',type:'move',title:'大塚 → 池袋 → 鐮倉',desc:'大塚 → 池袋（JR 山手線，3 分）→ 池袋 → 鐮倉（65 分）。早出發人少，鐮倉早上最舒服。',note:'🎫 建議買「江の島・鎌倉フリーパス」',map:'https://maps.google.com/?q=鎌倉駅'},
+      {id:'d2_2',time:'09:30',type:'play',title:'🚃 鐮倉高校前・鐵路拍照',desc:'《灌籃高手》著名場景，江之電穿越路口的畫面超有名。鐮倉搭江之電 17 分鐘抵達。早上人少好拍。',note:'',map:'https://maps.google.com/?q=鎌倉高校前駅'},
+      {id:'d2_3',time:'11:00',type:'play',title:'江之島・弁財天仲見世通（260M）',desc:'進島後的商店街，仙貝、烤章魚、小物，邊走邊吃。',note:'',map:'https://maps.google.com/?q=江島神社+弁天仲見世通'},
+      {id:'d2_4',time:'11:30',type:'play',title:'江島神社（550M）',desc:'三社連拜（邊津宮・中津宮・奧津宮），縁結神社，環境清幽。',note:'',map:'https://maps.google.com/?q=江島神社'},
+      {id:'d2_5',time:'12:15',type:'play',title:'🗼 Sea Candle 展望燈塔（850M）',desc:'島頂展望台，天氣好可看到富士山，360度海景。',note:'⏰ ¥500',map:'https://maps.google.com/?q=江の島シーキャンドル'},
+      {id:'d2_6',time:'13:00',type:'food',title:'島頂海鮮午餐',desc:'Sea Candle 附近景觀餐廳，新鮮海鮮丼或定食，一邊看海一邊吃。',note:'',map:'https://maps.google.com/?q=江の島+展望レストラン'},
+      {id:'d2_7',time:'14:15',type:'play',title:'江之島岩屋（2.4km）',desc:'島的最深處，天然海蝕洞穴，拿蠟燭進去探險。約 30 分鐘。',note:'⏰ ¥500',map:'https://maps.google.com/?q=江の島岩屋'},
+      {id:'d2_8',time:'16:00',type:'move',title:'江之島 → 東京',desc:'搭江之電回鐮倉，轉 JR 橫須賀線返回東京。避開 18:00 通勤尖峰。',note:'',map:'https://maps.google.com/?q=江ノ島駅'},
+      {id:'d2_9',time:'19:00',type:'food',title:'晚餐・大塚或池袋',desc:'今天走很多路，回來好好犒賞自己。池袋燒肉或大塚居酒屋都不錯。',note:'',map:'https://maps.google.com/?q=大塚駅'},
+    ]
+  },
+  { id:'d3', date:'5月23日（六）', title:'原宿・涉谷・惠比壽', note:'👟 先買鞋 → 服飾掃貨 → 暖暮拉麵收尾',
+    items:[
+      {id:'d3_1',time:'',type:'shop',title:'👟 HOKA 涉谷店【先買鞋！】',desc:'涉谷公園通沿線，KCA 渋谷ビル 1–3F。2025 年 12 月新開，款式最齊全分 Performance 和 Lifestyle 兩區。試穿完馬上換上，接下來整天穿新鞋走。',note:'📍 神南 1-22-3 KCA 渋谷｜⏰ 11:00–20:00',map:'https://maps.google.com/?q=HOKA+渋谷'},
+      {id:'d3_2',time:'',type:'shop',title:"Freak's Store 涉谷",desc:'美式休閒風，選品很有質感。',note:'',map:'https://maps.google.com/?q=Freak%27s+Store+渋谷'},
+      {id:'d3_3',time:'',type:'food',title:'表參道午餐',desc:'表參道 Hills 地下有各式餐廳，或走進小巷找咖哩店。今天晚上要吃拉麵，午餐吃輕一點。',note:'預算 ¥800–1,200',map:'https://maps.google.com/?q=表参道ヒルズ'},
+      {id:'d3_4',time:'',type:'shop',title:'United Tokyo 涉谷',desc:'全日本製、簡約質感男裝，布料和剪裁都很好。台灣沒有，必逛。',note:'📍 涉谷 MODI 或 PARCO 內',map:'https://maps.google.com/?q=UNITED+TOKYO+渋谷'},
+      {id:'d3_5',time:'',type:'shop',title:'United Arrows 涉谷本店',desc:'日本最強選品店之一，主線款式成熟有質感。',note:'📍 涉谷站步行 5 分鐘',map:'https://maps.google.com/?q=ユナイテッドアローズ+渋谷'},
+      {id:'d3_6',time:'',type:'play',title:'🎮 寶可夢中心 SHIBUYA',desc:'涉谷 PARCO 6F，有 PARCO 限定款，逛完衣服順路上來打卡。',note:'⏰ 11:00–21:00｜預計 45 分鐘',map:'https://maps.google.com/?q=ポケモンセンターシブヤ+渋谷PARCO'},
+      {id:'d3_7',time:'',type:'move',title:'涉谷 → 惠比壽',desc:'JR 山手線一站，約 3 分鐘。或步行約 15 分鐘（可以邊走邊感受代官山氛圍）。',note:'',map:'https://maps.google.com/?q=恵比寿駅'},
+      {id:'d3_8',time:'',type:'play',title:'惠比壽 Garden Place 散步',desc:'惠比壽的氣氛比涉谷安靜很多，有點歐洲感。Garden Place 廣場可以坐著等拉麵開門。',note:'',map:'https://maps.google.com/?q=恵比寿ガーデンプレイス'},
+      {id:'d3_9',time:'',type:'food',title:'🍜 暖暮拉麵 惠比壽店',desc:'福岡豚骨拉麵的代表，惠比壽店是東京人氣最高的分店之一。湯頭濃郁、麵條細直，加購半熟蛋和叉燒必點。',note:'📍 惠比壽駅東口步行 3 分鐘｜建議提早排隊',map:'https://maps.google.com/?q=暖暮+恵比寿店'},
+      {id:'d3_10',time:'',type:'move',title:'惠比壽 → 大塚 返回飯店',desc:'JR 山手線 惠比壽 → 池袋（約 20 分）→ 大塚（再一站）。',note:'',map:'https://maps.google.com/?q=大塚駅'},
+    ]
+  },
+  { id:'d4', date:'5月24日（日）', title:'上野・阿美橫丁・秋葉原', note:'🎌 文化 + 市場 + 電器街',
+    items:[
+      {id:'d4_1',time:'',type:'play',title:'上野恩賜公園',desc:'5 月綠意盎然，早晨散步最舒服。不趕時間可以隨意走。',note:'',map:'https://maps.google.com/?q=上野恩賜公園'},
+      {id:'d4_2',time:'',type:'play',title:'阿美橫丁',desc:'上野的庶民市場，海鮮、零食、藥妝、運動用品都有。人聲鼎沸，很有市場感。',note:'',map:'https://maps.google.com/?q=アメ横'},
+      {id:'d4_3',time:'',type:'food',title:'上野午餐',desc:'阿美橫丁旁邊有很多炸物、烤串攤，隨便逛隨便吃就是午餐了。',note:'',map:'https://maps.google.com/?q=アメ横+上野'},
+      {id:'d4_4',time:'',type:'move',title:'上野 → 秋葉原',desc:'步行 15 分鐘，或搭 JR 山手線一站。',note:'',map:'https://maps.google.com/?q=秋葉原駅'},
+      {id:'d4_5',time:'',type:'shop',title:'秋葉原 Yodobashi Camera',desc:'recolte 無線萬用調理機、冷藏服背心（-19°C），以及任天堂商品、3C 周邊。',note:'⏰ 預計 2–3 小時',map:'https://maps.google.com/?q=ヨドバシカメラ+秋葉原'},
+      {id:'d4_6',time:'',type:'play',title:'SEGA 遊戲機中心（選擇性）',desc:'秋葉原 SEGA 機台品質很高，夾娃娃機也比台灣便宜。',note:'',map:'https://maps.google.com/?q=SEGA+秋葉原'},
+      {id:'d4_7',time:'',type:'food',title:'晚餐・秋葉原周邊',desc:'秋葉原 UDX 大樓裡有很多餐廳，或走到神保町找老店。',note:'',map:'https://maps.google.com/?q=秋葉原UDX'},
+    ]
+  },
+  { id:'d5', date:'5月25日（一）', title:'川越・小江戶・スパジャポ', note:'🏘 江戶老街 + ♨️ 泡湯收尾',
+    items:[
+      {id:'d5_1',time:'09:00',type:'move',title:'大塚 → 池袋 → 川越',desc:'東武東上線快速急行，池袋出發約 30 分鐘直達。',note:'',map:'https://maps.google.com/?q=川越駅'},
+      {id:'d5_2',time:'09:45',type:'play',title:'藏造老街（一番街）',desc:'江戶時代建築保存完整，灰色土藏造建築很上相。早上人少，拍照最舒服。',note:'',map:'https://maps.google.com/?q=川越+蔵造りの町並み'},
+      {id:'d5_3',time:'10:45',type:'play',title:'時之鐘（時の鐘）',desc:'川越最具代表性的地標，江戶時代鐘樓，每天固定報時。免費。',note:'',map:'https://maps.google.com/?q=時の鐘+川越'},
+      {id:'d5_4',time:'11:00',type:'food',title:'菓子屋橫丁・小吃',desc:'明治時代糖果街，懷舊零食、番薯零食（川越名產）。邊走邊吃超推薦。',note:'',map:'https://maps.google.com/?q=菓子屋横丁+川越'},
+      {id:'d5_5',time:'12:00',type:'play',title:'川越氷川神社',desc:'超有名縁結神社，風鈴廊很漂亮，5 月有特別裝置。',note:'',map:'https://maps.google.com/?q=川越氷川神社'},
+      {id:'d5_6',time:'13:00',type:'food',title:'午餐・川越老街',desc:'推薦番薯料理套餐（川越地瓜最有名），或附近蕎麥麵。',note:'',map:'https://maps.google.com/?q=川越+蔵造りの町並み'},
+      {id:'d5_7',time:'14:30',type:'shop',title:'地瓜伴手禮採購',desc:'地瓜相關商品（餅乾、冰淇淋、點心），包裝精緻很好送人。',note:'',map:'https://maps.google.com/?q=菓子屋横丁+川越'},
+      {id:'d5_8',time:'15:30',type:'move',title:'川越 → 東久留米（Spadium Japon）',desc:'搭東武東上線回方向，中途在東久留米附近下車。搭計程車到 Spadium Japon 約 5 分鐘（¥700）。',note:'',map:'https://maps.google.com/?q=スパジャポ+東久留米'},
+      {id:'d5_9',time:'16:30',type:'play',title:'♨️ Spadium Japon（スパジャポ）',desc:'關東最大級天然溫泉設施。15種浴池＋2種桑拿＋岩盤浴，漫畫 3 萬冊讀放題、餐廳。川越走了一整天剛好來泡湯放鬆。',note:'⏰ 週一–四 9:00–凌晨1:00｜週六 8:00–凌晨2:00',map:'https://maps.google.com/?q=スパジャポ+東久留米'},
+      {id:'d5_10',time:'18:30',type:'food',title:'スパジャポ 館內晚餐',desc:'館內有餐廳、和食、薪窯披薩等，水準出乎意料的高。',note:'',map:'https://maps.google.com/?q=スパジャポ+東久留米'},
+      {id:'d5_11',time:'20:30',type:'move',title:'スパジャポ → 大塚飯店',desc:'搭計程車到東久留米站 → 西武池袋線 → 池袋 → JR 山手線 → 大塚。全程約 40 分鐘。',note:'',map:'https://maps.google.com/?q=大塚駅'},
+    ]
+  },
+  { id:'d6', date:'5月26日（二）', title:'築地・月島・銀座', note:'🍣 海鮮早餐 + 文字燒 + 最後採購',
+    items:[
+      {id:'d6_1',time:'',type:'food',title:'築地外場市場 早餐',desc:'海鮮丼、玉子燒，觀光客必去。早上去人比較少。',note:'📍 東京都中央區築地4丁目',map:'https://maps.google.com/?q=築地場外市場'},
+      {id:'d6_2',time:'',type:'food',title:'月島 文字燒午餐',desc:'文字燒發源地，老街氛圍。西仲通り商店街一排文字燒店，隨便選都不會太差。',note:'📍 月島駅步行 3 分鐘',map:'https://maps.google.com/?q=月島+もんじゃストリート'},
+      {id:'d6_3',time:'',type:'shop',title:'🛍 UNIQLO 銀座旗艦店',desc:'銀座 6 號館，UNIQLO 全球最大店。台灣沒有的款式這裡都有，UT 聯名款選擇最多。開門即入場，人少好逛。',note:'',map:'https://maps.google.com/?q=ユニクロ+銀座'},
+      {id:'d6_4',time:'',type:'shop',title:'銀座商圈掃貨',desc:'ITOYA 文具、無印良品銀座店、GINZA SIX 都在這區。最後採購機會。',note:'',map:'https://maps.google.com/?q=銀座+GINZA+SIX'},
+      {id:'d6_5',time:'',type:'food',title:'🍻 最後晚餐',desc:'挑這趟最想去的那間，好好結尾。最後一夜，慢慢吃不用趕。',note:'',map:'https://maps.google.com/?q=銀座'},
+      {id:'d6_6',time:'',type:'rest',title:'整理行李',desc:'把所有戰利品整理好，確認免稅商品包裝完整，設好明天 06:30 的鬧鐘。',note:'',map:'https://maps.google.com/?q=APA+Hotel+Yamanote+Otsuka+Ekimae+Tower'},
+    ]
+  },
+  { id:'d7', date:'5月27日（三）', title:'返台', note:'✈️ 酷航 TR867｜成田 12:30 → 桃園 15:10',
+    items:[
+      {id:'d7_1',time:'06:30',type:'rest',title:'起床・最後確認行李',desc:'確認護照、機票訂單、所有物品打包完畢。免稅商品包裝完整保留。',note:'',map:'https://maps.google.com/?q=APA+Hotel+Yamanote+Otsuka+Ekimae+Tower'},
+      {id:'d7_2',time:'07:00',type:'food',title:'最後一次便利商店早餐',desc:'最後一次 7-11 或全家早餐，帶上路吃。',note:'',map:'https://maps.google.com/?q=大塚駅+コンビニ'},
+      {id:'d7_3',time:'07:30',type:'move',title:'大塚 → 日暮里 → 成田機場',desc:'大塚 → 日暮里（JR 山手線，約 10 分）→ 日暮里 → 成田（京成 Skyliner，約 41 分）。09:30 前抵達。',note:'🎫 Skyliner 單程 ¥2,570｜建議預先購票',map:'https://maps.google.com/?q=成田国際空港'},
+      {id:'d7_4',time:'09:30',type:'move',title:'成田機場 Check-in + 退稅',desc:'先辦 Check-in 托運行李，再去退稅櫃台。購買滿 ¥5,000 可退約 10%。',note:'⚠️ 退稅後免稅商品放進托運行李，不可在國內拆封使用',map:'https://maps.google.com/?q=成田国際空港'},
+      {id:'d7_5',time:'10:30',type:'play',title:'過安檢・逛免稅店',desc:'候機室有不少免稅店，最後確認有沒有漏買的東西。',note:'',map:'https://maps.google.com/?q=成田国際空港'},
+      {id:'d7_6',time:'12:30',type:'move',title:'✈️ 酷航 TR867 起飛',desc:'約 3 小時後抵達桃園，帶著滿滿回憶和戰利品回家！',note:'',map:'https://maps.google.com/?q=成田国際空港'},
+      {id:'d7_7',time:'15:10',type:'rest',title:'🎉 抵達桃園，旅途圓滿！',desc:'入境後搭高鐵或巴士回家。7天6夜，東京獨旅完成！',note:'',map:'https://maps.google.com/?q=桃園國際機場'},
+    ]
+  },
+];
+
+const DEFAULT_SHOP = [
+  {id:'s1',cat:'💊 助眠',name:'DHC GABA 助眠',jp:'DHC GABA 200mg',where:'唐吉訶德 涉谷道玄坂',day:'D3',note:'壓力大、腦袋靜不下來 → 100–300mg GABA，透過腸道神經改善入睡',img:'data:image/jpeg;base64,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',checked:true},
+  {id:'s2',cat:'💊 助眠',name:'合力他命 Night Recover',jp:'合力他命 ナイトリカバー',where:'唐吉訶德 涉谷道玄坂',day:'D3',note:'睡起來還是累的人 → β-1,3-葡聚多醣 250mg，改善整體/生理/心理疲勞感',img:'data:image/jpeg;base64,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'},
+  {id:'s3',cat:'💊 助眠',name:'小林製藥 睡眠HELP',jp:'小林製藥 安眠ヘルプ',where:'唐吉訶德 涉谷道玄坂',day:'D3',note:'淺眠多夢的人 → 羅布麻葉萃取物，臨床試驗證實可提升睡眠深度',img:'data:image/jpeg;base64,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'},
+  {id:'s4',cat:'💊 助眠',name:'朝日Asahi 睡眠茶氨酸錠',jp:'朝日Asahi ネナイト',where:'唐吉訶德 涉谷道玄坂',day:'D3',note:'入睡慢、想減輕起床疲勞 → L-茶胺酸 200mg，減輕壓力指數',img:'data:image/jpeg;base64,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',checked:true},
+  {id:'s5',cat:'💊 助眠',name:'Q&P KOWA 疲勞恢復',jp:'Q&P KOWA ヒーリング',where:'唐吉訶德 涉谷道玄坂',day:'D3',note:'爆肝後睡前吃 → 三重生藥+5種維他命，睡眠中持續疲勞恢復',img:'data:image/jpeg;base64,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',checked:true},
+  {id:'s6',cat:'🦷 口腔',name:'PureOra 炭酸牙膏',jp:'KAO PureOra 炭酸ハミガキ',where:'唐吉訶德 任一天',day:'D3+',note:'無水配方，刷牙當下碳酸起泡滲入牙縫，預防牙周病，飛墨口香糖味',img:'data:image/jpeg;base64,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',checked:true},
+  {id:'s7',cat:'🦷 口腔',name:'Lion デントヘルス 牙膏',jp:'LION デントヘルス',where:'唐吉訶德 任一天',day:'D3+',note:'最大濃度藥用牙膏，齒槽膿漏預防，多款可選（深藍=抗菌/淡藍=抗敏感）',img:'data:image/jpeg;base64,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'},
+  {id:'s8',cat:'👟 鞋',name:'HOKA 球鞋',jp:'HOKA',where:'HOKA 涉谷店',day:'D3',note:'日本售價通常比台灣便宜 10–20%，限定色只有這裡有'},
+  {id:'s9',cat:'🏠 家電',name:'recolte 無線萬用調理機',jp:'récolte Cordless Bonne',where:'Yodobashi Camera 秋葉原',day:'D4',note:'無線設計，玻璃調理杯，切碎/攪拌/磨泥/打發一台搞定，有4色可選',img:'data:image/jpeg;base64,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'},
+  {id:'s10',cat:'🧥 服裝',name:'冷藏服背心 -19°C',jp:'冷蔵服ベスト',where:'Yodobashi / ワークマン',day:'D4',note:'ペルチェ冷却プレート，環境溫度-19°C，強力風扇43L/s，PD充電，可水洗',img:'data:image/jpeg;base64,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'},
+  {id:'s11',cat:'💊 助眠',name:'小林製藥 熱冷貼',jp:'ロイヒつぼ膏',where:'唐吉訶德 涉谷道玄坂',day:'D3',note:'台灣買不到的肩頸腰部款，逛景點走太多路晚上貼超有感',img:'',checked:true},
+  {id:'s12',cat:'🧴 護膚',name:'Biore UV Aqua Rich 防曬乳',jp:'ビオレ UV アクアリッチ',where:'唐吉訶德 涉谷道玄坂',day:'D3',note:'日本版SPF50+ 質地更清爽，整天戶外必備，日本買比台灣便宜',img:'',checked:true},
+  {id:'s13',cat:'⚡ 3C',name:'Anker MagSafe 充電支架',jp:'Anker MagSafe',where:'Yodobashi 秋葉原',day:'D4',note:'日本定價比台灣便宜15%，現場可比較各款式',img:'',checked:true},
+  {id:'s14',cat:'💊 助眠',name:'井藤漢方 大肚腩瘦腹丸',jp:'井藤漢方 ナイシダウン',where:'唐吉訶德 / 藥妝店',day:'D3',note:'黑薑聚甲氧基黃酮，集中減少腹部內臟脂肪＋皮下脂肪，日本熱賣，台灣代購貴很多',img:'',checked:true},
+];
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+function loadData() {
+  try { return { days: JSON.parse(localStorage.getItem('tokyoDays')) || null, shop: JSON.parse(localStorage.getItem('tokyoShop')) || null }; } catch(e) { return {days:null,shop:null}; }
+}
+function saveData() {
+  try { localStorage.setItem('tokyoDays', JSON.stringify(DAYS)); localStorage.setItem('tokyoShop', JSON.stringify(SHOP)); } catch(e){}
+}
+
+const stored = loadData();
+let DAYS = stored.days || JSON.parse(JSON.stringify(DEFAULT_DAYS));
+let SHOP = stored.shop || JSON.parse(JSON.stringify(DEFAULT_SHOP));
+let editMode = false;
+let editingDay = null;
+let editingItemIdx = null;
+let editingShopIdx = null;
+
+// ══════════════════════════════════════════
+// RENDER ITINERARY
+// ══════════════════════════════════════════
+const TYPE_TAG = { move:'交通', food:'餐飲', shop:'購物', play:'景點', rest:'休息' };
+const TYPE_CLASS = { move:'type-move', food:'type-food', shop:'type-shop', play:'type-play', rest:'type-rest' };
+const TAG_CLASS = { move:'tag-move', food:'tag-food', shop:'tag-shop', play:'tag-play', rest:'tag-rest' };
+
+function renderDays() {
+  const container = document.getElementById('itinerary-tabs-container');
+  let html = '';
+  DAYS.forEach(day => {
+    html += `<div class="tab-content" id="tab-${day.id}">
+  <div class="day-header">
+    <div class="day-num">${day.id.slice(1).padStart(2,'0')}</div>
+    <div class="day-info">
+      <div class="day-date">${day.date}</div>
+      <div class="day-title" contenteditable="${editMode}" onblur="saveDayTitle('${day.id}',this)">${day.title}</div>
+      <div class="day-note">${day.note}</div>
+    </div>
+  </div>
+  ${day.weatherHtml || ''}
+  <div class="timeline" id="tl-${day.id}">`;
+    day.items.forEach((item, idx) => {
+      html += renderItem(day.id, item, idx);
+    });
+    html += `</div>`;
+    if(editMode) html += `<button class="add-item-btn" onclick="openAddItem('${day.id}')">＋ 新增活動</button>`;
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+
+  // Re-apply active tab
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  const activeBtn = document.querySelector('.tab-btn.active');
+  const activeId = activeBtn ? (activeBtn.getAttribute('data-tab') || 'home') : 'home';
+  const activeTab = document.getElementById('tab-' + activeId);
+  if(activeTab) activeTab.classList.add('active');
+}
+
+function mapsUrl(item) {
+  if (item.map && item.map.length > 0) return item.map;
+  try {
+    const clean = item.title.replace(/[\u{1F000}-\u{1FFFF}]|[\u2600-\u27FF]|[\uFE00-\uFE0F]/gu, '').trim();
+    const q = encodeURIComponent(clean + ' 東京');
+    return `https://www.google.com/maps/search/?api=1&query=${q}`;
+  } catch(e) {
+    return 'https://www.google.com/maps/search/?api=1&query=東京';
+  }
+}
+
+function renderItem(dayId, item, idx) {
+  const navUrl = mapsUrl(item);
+  return `<div class="tl-item ${TYPE_CLASS[item.type] || ''}">
+  <div class="tl-time">${item.time}</div>
+  <div class="tl-dot"></div>
+  <div class="tl-body">
+    <h4>${item.title} <span class="tag ${TAG_CLASS[item.type] || ''}">${TYPE_TAG[item.type]||''}</span></h4>
+    <p>${item.desc}</p>
+    ${item.note ? `<p class="note">${item.note}</p>` : ''}
+    <a class="tl-nav-btn" href="${navUrl}" target="_blank">📍 Google Maps</a>
+  </div>
+  ${editMode ? `<div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0;align-self:flex-start;margin-top:10px;">
+    <button class="tl-edit-btn" onclick="openEditItem('${dayId}',${idx})">✏️ 編輯</button>
+    <button class="tl-del-btn" onclick="confirmDeleteItem('${dayId}','${item.id}')">✕ 刪除</button>
+  </div>` : ''}
+</div>`;
+}
+
+function saveDayTitle(dayId, el) {
+  const day = DAYS.find(d => d.id === dayId);
+  if(day) { day.title = el.textContent.trim(); saveData(); }
+}
+
+// ══════════════════════════════════════════
+// RENDER SHOP
+// ══════════════════════════════════════════
+function renderShop() {
+  const list = document.getElementById('shop-list');
+  if(!list) return;
+  const slTotal = document.getElementById('sl-total');
+  const slCount = document.getElementById('sl-count');
+  document.getElementById('shop-count-note').textContent = `共 ${SHOP.length} 件｜點右邊圓圈標記已購買`;
+  slTotal.textContent = SHOP.length;
+
+  // Group by cat
+  const groups = {};
+  const groupOrder = [];
+  SHOP.forEach((item, idx) => {
+    const cat = item.cat || '其他';
+    if (!groups[cat]) { groups[cat] = []; groupOrder.push(cat); }
+    groups[cat].push({ item, idx });
+  });
+
+  let checked = 0;
+  SHOP.forEach(item => { if(item.checked) checked++; });
+
+  // Category header color map
+  const CAT_COLOR = {
+    '💊 助眠':  { bg:'#fff0f5', border:'#f4a0b8', text:'#c0396a' },
+    '🦷 口腔':  { bg:'#f0fff8', border:'#6dd4a8', text:'#1a7a55' },
+    '👟 鞋':    { bg:'#fff8f0', border:'#f4c06a', text:'#a06020' },
+    '👕 服飾':  { bg:'#f0f6ff', border:'#80aaee', text:'#1a4fa0' },
+    '🏠 家電':  { bg:'#f5f0ff', border:'#b090e0', text:'#5030a0' },
+    '🧥 服裝':  { bg:'#f0faff', border:'#70c0e8', text:'#1060a0' },
+  };
+  const DEFAULT_COLOR = { bg:'#f8f8f8', border:'#cccccc', text:'#555555' };
+
+  let html = '';
+  groupOrder.forEach(cat => {
+    const col = CAT_COLOR[cat] || DEFAULT_COLOR;
+    const groupItems = groups[cat];
+    const groupChecked = groupItems.filter(({item}) => item.checked).length;
+    html += `<div class="sl-group" style="margin-bottom:20px;">
+  <div class="sl-group-header" style="background:${col.bg};border-left:4px solid ${col.border};color:${col.text};">
+    <span class="sl-group-title">${cat}</span>
+    <span class="sl-group-count">${groupChecked}/${groupItems.length}</span>
+  </div>`;
+    groupItems.forEach(({ item, idx }) => {
+      const isChecked = item.checked || false;
+      html += `<div class="sl-item${isChecked ? ' checked' : ''}" id="sl-${item.id}">
+  ${item.img ? `<img class="sl-img" src="${item.img}" onclick="openLightbox('${item.id}')" data-name="${item.name}" alt="${item.name}">` : ''}
+  <div class="sl-info">
+    <div class="sl-name">${item.name}</div>
+    <div class="sl-jp">${item.jp}</div>
+    <div class="sl-where">📍 ${item.where} <span class="sl-day-badge">${item.day}</span></div>
+    <div class="sl-note">${item.note}</div>
+  </div>
+  ${editMode ? `<button class="tl-edit-btn" style="margin-top:0;align-self:center;" onclick="openEditShopById('${item.id}')">✏️ 編輯</button>` : ''}
+  <button class="sl-check" onclick="toggleCheckById('${item.id}')">✓</button>
+</div>`;
+    });
+    html += `</div>`;
+  });
+
+  if(editMode) html += `<button class="add-item-btn" onclick="openAddShop()">＋ 新增品項</button>`;
+  list.innerHTML = html;
+  slCount.textContent = checked;
+}
+
+function toggleCheckById(id) {
+  const scrollY = document.getElementById('shop-list').scrollTop;
+  const item = SHOP.find(s => s.id === id);
+  if(item) item.checked = !item.checked;
+  saveData();
+  renderShop();
+  requestAnimationFrame(() => {
+    const el = document.getElementById('shop-list');
+    if(el) el.scrollTop = scrollY;
+  });
+}
+
+function toggleCheck(idx) {
+  const scrollY = document.getElementById('shop-list').scrollTop;
+  SHOP[idx].checked = !SHOP[idx].checked;
+  saveData();
+  renderShop();
+  requestAnimationFrame(() => {
+    const el = document.getElementById('shop-list');
+    if(el) el.scrollTop = scrollY;
+  });
+}
+
+function openEditShopById(id) {
+  const idx = SHOP.findIndex(s => s.id === id);
+  if(idx === -1) return;
+  openEditShop(idx);
+}
+
+// ══════════════════════════════════════════
+// EDIT MODE
+// ══════════════════════════════════════════
+function toggleEditMode() {
+  editMode = !editMode;
+  document.getElementById('editFab').textContent = editMode ? '✅ 完成' : '✏️ 編輯';
+  document.getElementById('editFab').style.background = editMode ? 'var(--teal)' : 'var(--accent)';
+  const bar = document.getElementById('editBar');
+  bar.classList.toggle('visible', editMode);
+  document.querySelectorAll('.timeline').forEach(el => el.classList.toggle('edit-active', editMode));
+  const shopAddBtn = document.getElementById('shopAddBtn');
+  if(shopAddBtn) shopAddBtn.style.display = editMode ? 'flex' : 'none';
+  renderDays();
+  renderShop();
+}
+
+// ══════════════════════════════════════════
+// ITEM MODAL
+// ══════════════════════════════════════════
+function openEditItem(dayId, idx) {
+  editingDay = dayId;
+  editingItemIdx = idx;
+  const item = DAYS.find(d=>d.id===dayId).items[idx];
+  document.getElementById('modalTitle').textContent = '編輯活動';
+  document.getElementById('mTime').value = item.time;
+  document.getElementById('mType').value = item.type;
+  document.getElementById('mTitle').value = item.title;
+  document.getElementById('mDesc').value = item.desc;
+  document.getElementById('mNote').value = item.note;
+  document.getElementById('modalDeleteBtn').style.display = 'block';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function openAddItem(dayId) {
+  editingDay = dayId;
+  editingItemIdx = null;
+  document.getElementById('modalTitle').textContent = '新增活動';
+  document.getElementById('mTime').value = '';
+  document.getElementById('mType').value = 'play';
+  document.getElementById('mTitle').value = '';
+  document.getElementById('mDesc').value = '';
+  document.getElementById('mNote').value = '';
+  document.getElementById('modalDeleteBtn').style.display = 'none';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function saveItinItem() {
+  const day = DAYS.find(d=>d.id===editingDay);
+  const item = {
+    id: editingItemIdx !== null ? day.items[editingItemIdx].id : 'i_'+Date.now(),
+    time: document.getElementById('mTime').value,
+    type: document.getElementById('mType').value,
+    title: document.getElementById('mTitle').value,
+    desc: document.getElementById('mDesc').value,
+    note: document.getElementById('mNote').value,
+  };
+  if(editingItemIdx !== null) day.items[editingItemIdx] = item;
+  else day.items.push(item);
+  saveData();
+  closeModal();
+  renderDays();
+}
+
+function deleteItinItem() {
+  const day = DAYS.find(d=>d.id===editingDay);
+  const itemId = editingItemIdx !== null ? day.items[editingItemIdx]?.id : null;
+  if(itemId) day.items = day.items.filter(i => i.id !== itemId);
+  else if(editingItemIdx !== null) day.items.splice(editingItemIdx, 1);
+  saveData();
+  closeModal();
+  renderDays();
+}
+
+function confirmDeleteItem(dayId, itemId) {
+  const day = DAYS.find(d=>d.id===dayId);
+  day.items = day.items.filter(i => i.id !== itemId);
+  saveData();
+  renderDays();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+// ══════════════════════════════════════════
+// SHOP MODAL
+// ══════════════════════════════════════════
+function openEditShop(idx) {
+  editingShopIdx = idx;
+  const item = SHOP[idx];
+  document.getElementById('shopModalTitle').textContent = '編輯品項';
+  document.getElementById('smCat').value = item.cat;
+  document.getElementById('smName').value = item.name;
+  document.getElementById('smJp').value = item.jp;
+  document.getElementById('smWhere').value = item.where;
+  document.getElementById('smDay').value = item.day;
+  document.getElementById('smNote').value = item.note;
+  document.getElementById('shopDeleteBtn').style.display = 'block';
+  document.getElementById('shopModalOverlay').classList.add('open');
+}
+
+function openAddShop() {
+  editingShopIdx = null;
+  document.getElementById('shopModalTitle').textContent = '新增品項';
+  ['smCat','smName','smJp','smWhere','smNote'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('smDay').value = 'D3';
+  document.getElementById('shopDeleteBtn').style.display = 'none';
+  document.getElementById('shopModalOverlay').classList.add('open');
+}
+
+function saveShopItem() {
+  const existingItem = editingShopIdx !== null ? SHOP[editingShopIdx] : null;
+  const item = {
+    id: existingItem ? existingItem.id : 's_'+Date.now(),
+    cat: document.getElementById('smCat').value,
+    name: document.getElementById('smName').value,
+    jp: document.getElementById('smJp').value,
+    where: document.getElementById('smWhere').value,
+    day: document.getElementById('smDay').value,
+    note: document.getElementById('smNote').value,
+    checked: existingItem ? existingItem.checked : false,
+    img: existingItem ? (existingItem.img || '') : '',
+  };
+  if(editingShopIdx !== null) SHOP[editingShopIdx] = item;
+  else SHOP.push(item);
+  saveData();
+  closeShopModal();
+  renderShop();
+}
+
+function deleteShopItem() {
+  SHOP.splice(editingShopIdx, 1);
+  saveData();
+  closeShopModal();
+  renderShop();
+}
+
+function deleteItinItem() {
+  const day = DAYS.find(d=>d.id===editingDay);
+  const itemId = editingItemIdx !== null ? day.items[editingItemIdx]?.id : null;
+  if(itemId) day.items = day.items.filter(i => i.id !== itemId);
+  else if(editingItemIdx !== null) day.items.splice(editingItemIdx, 1);
+  saveData();
+  closeModal();
+  renderDays();
+}
+
+function closeShopModal() {
+  document.getElementById('shopModalOverlay').classList.remove('open');
+}
+
+// ══════════════════════════════════════════
+// TAB
+// ══════════════════════════════════════════
+function switchTab(id, btn) {
+  try { sessionStorage.setItem('activeTab', id); } catch(e){}
+  // Auto-exit edit mode on tab switch
+  if(editMode) {
+    editMode = false;
+    document.getElementById('editFab').textContent = '✏️ 編輯';
+    document.getElementById('editFab').style.background = 'var(--accent)';
+    document.getElementById('editBar').classList.remove('visible');
+  }
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  const tab = document.getElementById('tab-' + id);
+  if(tab) tab.classList.add('active');
+  btn.classList.add('active');
+  const showEdit = ['d1','d2','d3','d4','d5','d6','d7','shop'].includes(id);
+  document.getElementById('editFab').classList.toggle('visible', showEdit);
+  // Show/hide shop add button
+  const shopAddBtn = document.getElementById('shopAddBtn');
+  if(shopAddBtn) shopAddBtn.style.display = (id === 'shop' && editMode) ? 'flex' : 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ══════════════════════════════════════════
+// COUNTDOWN
+// ══════════════════════════════════════════
+const DEPART = new Date('2026-05-21T08:00:00+08:00');
+function pad(n){ return String(n).padStart(2,'0'); }
+function updateCountdown(){
+  const now = new Date();
+  const diff = DEPART - now;
+  const gone = document.getElementById('cntGone');
+  const nums = document.getElementById('cntNums');
+  const sub  = document.getElementById('cntSub');
+  if(!gone) return;
+  if(diff <= 0){
+    nums.style.display = 'none';
+    sub.style.display = 'none';
+    gone.style.display = 'block';
+    // Calculate which day of trip (D1~D7 based on calendar date)
+    const tripStart = new Date('2026-05-21T00:00:00+08:00');
+    const tripEnd   = new Date('2026-05-27T23:59:59+08:00');
+    const nowDate   = new Date();
+    if(nowDate <= tripEnd) {
+      const dayNum = Math.floor((nowDate - tripStart) / 86400000) + 1;
+      const dayLabels = {1:'D1 抵達東京',2:'D2 江之島・鐮倉',3:'D3 涉谷・惠比壽',4:'D4 上野・秋葉原',5:'D5 川越・スパジャポ',6:'D6 銀座',7:'D7 返台'};
+      gone.textContent = `✈️ 旅行第 ${dayNum} 天｜${dayLabels[dayNum] || ''}`;
+    } else {
+      gone.textContent = '🏠 旅途已結束，感謝這趟美好的東京行！';
+    }
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cntD').textContent = d;
+  document.getElementById('cntH').textContent = pad(h);
+  document.getElementById('cntM').textContent = pad(m);
+  document.getElementById('cntS').textContent = pad(s);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ══════════════════════════════════════════
+// WEATHER
+// ══════════════════════════════════════════
+const TRIP_DATES = ['2026-05-21','2026-05-22','2026-05-23','2026-05-24','2026-05-25','2026-05-26','2026-05-27'];
+const DAY_LABELS = ['5/21 四','5/22 五','5/23 六','5/24 日','5/25 一','5/26 二','5/27 三'];
+const WMO_MAP = {0:['☀️','晴'],1:['🌤','晴時多雲'],2:['⛅','多雲'],3:['☁️','陰'],45:['🌫','霧'],51:['🌦','毛毛雨'],53:['🌦','小雨'],55:['🌧','中雨'],61:['🌧','小雨'],63:['🌧','中雨'],65:['🌧','大雨'],80:['🌦','陣雨'],81:['🌧','大陣雨'],95:['⛈','雷陣雨']};
+async function loadWeather() {
+  try {
+    const today = new Date();
+    const tripStart = new Date('2026-05-21');
+    const tripEnd = new Date('2026-05-27');
+    const forecastLimit = new Date(today.getTime() + 16 * 86400000);
+    // If trip is beyond forecast range, show message
+    if(tripStart > forecastLimit) {
+      document.getElementById('weatherLoading').textContent = '📅 天氣預報僅提供未來 16 天，出發前再來看！';
+      return;
+    }
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=35.6762&longitude=139.6503&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&start_date=2026-05-21&end_date=2026-05-27`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const daily = data.daily;
+    const todayStr = today.toISOString().slice(0,10);
+    let html = '';
+    daily.time.forEach((date, i) => {
+      const wmo = daily.weathercode[i];
+      const [icon, desc] = WMO_MAP[wmo] || ['🌡','不明'];
+      const hi = Math.round(daily.temperature_2m_max[i]);
+      const lo = Math.round(daily.temperature_2m_min[i]);
+      const rain = daily.precipitation_probability_max[i];
+      html += `<div class="weather-card${date===todayStr?' today':''}">
+        <div class="wc-date">${DAY_LABELS[i]}</div>
+        <div class="wc-icon">${icon}</div>
+        <div class="wc-temp">${hi}° <span>${'/'} ${lo}°</span></div>
+        <div class="wc-desc">${desc}</div>
+        ${rain>=30?`<div class="wc-desc" style="color:#1a5fa0">☂ ${rain}%</div>`:''}
+      </div>`;
+    });
+    document.getElementById('weatherLoading').style.display = 'none';
+    const grid = document.getElementById('weatherGrid');
+    grid.innerHTML = html; grid.style.display = 'grid';
+    const note = document.getElementById('weatherNote');
+    note.style.display = 'block';
+    note.textContent = '📡 即時資料來自 Open-Meteo｜每次開啟自動更新｜☂ 數字代表降雨機率';
+    // Inject weather into each day tab
+    daily.time.forEach((date, i) => {
+      const wmo = daily.weathercode[i];
+      const [icon, desc] = WMO_MAP[wmo] || ['🌡','不明'];
+      const hi = Math.round(daily.temperature_2m_max[i]);
+      const lo = Math.round(daily.temperature_2m_min[i]);
+      const rain = daily.precipitation_probability_max[i];
+      const dayId = 'd' + (i+1);
+      const day = DAYS.find(d => d.id === dayId);
+      if(day) {
+        const sep = '/';
+        day.weatherHtml = `<div style="display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:8px 14px;margin-bottom:14px;font-size:12px;">
+          <span style="font-size:20px;">${icon}</span>
+          <span style="font-weight:700;">${hi}°<span style="font-weight:400;color:var(--muted)">${sep}${lo}°</span></span>
+          <span style="color:var(--muted);">${desc}</span>
+          ${rain>=30?`<span style="color:var(--blue);margin-left:4px;">☂ ${rain}%</span>`:''}
+          <span style="font-size:10px;color:var(--muted);margin-left:auto;">${DAY_LABELS[i]}</span>
+        </div>`;
+      }
+    });
+    renderDays();
+  } catch(e) {
+    const el = document.getElementById('weatherLoading');
+    if(el) el.textContent = '⚠️ 天氣載入失敗，請確認網路連線後重整頁面';
+  }
+}
+loadWeather();
+
+// ══════════════════════════════════════════
+// LEDGER
+// ══════════════════════════════════════════
+let entries = (function(){ try { return JSON.parse(localStorage.getItem('tokyoLedger') || '[]'); } catch(e){ return []; } })();
+function saveLedger(){ try { localStorage.setItem('tokyoLedger', JSON.stringify(entries)); } catch(e){} }
+
+function toggleRateRow(){
+  const cur = document.getElementById('ledgerCurrency').value;
+  const row = document.getElementById('ledgerRateRow');
+  if(row) row.style.display = cur === 'JPY' ? 'flex' : 'none';
+}
+// Load saved rate on page ready
+window.addEventListener('load', () => {
+  try {
+    const savedRate = localStorage.getItem('lastJPYRate');
+    if(savedRate) document.getElementById('ledgerRate').value = savedRate;
+  } catch(e){}
+});
+
+function addEntry(){
+  const day      = document.getElementById('ledgerDay').value;
+  const cat      = document.getElementById('ledgerCat').value;
+  const item     = document.getElementById('ledgerItem').value.trim();
+  const amt      = parseFloat(document.getElementById('ledgerAmt').value);
+  const currency = document.getElementById('ledgerCurrency').value;
+  const rate     = currency === 'JPY' ? (parseFloat(document.getElementById('ledgerRate').value) || 0.22) : 1;
+  if(!item || !amt || amt <= 0) { alert('請填寫品項和金額'); return; }
+  if(currency === 'JPY') { try{ localStorage.setItem('lastJPYRate', rate); }catch(e){} }
+  entries.push({ id: Date.now(), day, cat, item, amt, currency, rate });
+  saveLedger();
+  document.getElementById('ledgerItem').value = '';
+  document.getElementById('ledgerAmt').value = '';
+  renderLedger();
+}
+
+function editEntry(id) {
+  const e = entries.find(x => x.id === id);
+  if(!e) return;
+  const newItem = prompt('品項', e.item);
+  if(newItem === null) return;
+  const newAmt = parseFloat(prompt('金額', e.amt));
+  if(isNaN(newAmt) || newAmt <= 0) return;
+  e.item = newItem.trim() || e.item;
+  e.amt = newAmt;
+  saveLedger();
+  renderLedger();
+}
+function deleteEntry(id){
+  entries = entries.filter(e => e.id !== id);
+  saveLedger();
+  renderLedger();
+}
+
+function renderLedger(){
+  const list    = document.getElementById('ledgerList');
+  const summary = document.getElementById('ledgerSummary');
+  if(entries.length === 0){
+    list.innerHTML = '<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px;">還沒有任何記錄</div>';
+    summary.style.display = 'none';
+    return;
+  }
+
+  // Calculate totals
+  let totalJPY = 0, totalTWD = 0;
+  entries.forEach(e => {
+    const cur = e.currency || 'JPY';
+    const rate = e.rate || 0.22;
+    if(cur === 'JPY') {
+      totalJPY += e.amt;
+      totalTWD += e.amt * rate;
+    } else {
+      totalTWD += e.amt;
+    }
+  });
+
+  document.getElementById('ledgerTotalJPY').textContent = '¥ ' + Math.round(totalJPY).toLocaleString();
+  document.getElementById('ledgerTotalTWD').textContent = 'NT$ ' + Math.round(totalTWD).toLocaleString();
+  summary.style.display = 'block';
+
+  const days = ['D1','D2','D3','D4','D5','D6','D7'];
+  const dayNames = {'D1':'D1 5/21','D2':'D2 5/22','D3':'D3 5/23','D4':'D4 5/24','D5':'D5 5/25','D6':'D6 5/26','D7':'D7 5/27'};
+  let html = '';
+  days.forEach(day => {
+    const dayEntries = entries.filter(e => e.day === day);
+    if(!dayEntries.length) return;
+
+    // Day subtotal in TWD
+    let dayTWD = 0;
+    dayEntries.forEach(e => {
+      const cur = e.currency || 'JPY';
+      const rate = e.rate || 0.22;
+      dayTWD += cur === 'JPY' ? e.amt * rate : e.amt;
+    });
+
+    html += `<div class="ledger-day-label">${dayNames[day]} — NT$ ${Math.round(dayTWD).toLocaleString()}</div>`;
+    dayEntries.forEach(e => {
+      const cur = e.currency || 'JPY';
+      const rate = e.rate || 0.22;
+      const symbol = cur === 'JPY' ? '¥' : 'NT$';
+      const rateNote = cur === 'JPY' ? `<span style="font-size:10px;color:var(--muted);"> ×${rate}</span>` : '';
+      html += `<div class="ledger-entry" onclick="editEntry(${e.id})" style="cursor:pointer;" title="點選編輯">
+        <span class="le-cat">${e.cat}</span>
+        <span class="le-item">${e.item}</span>
+        <span class="le-amt">${symbol} ${e.amt.toLocaleString()}${rateNote}</span>
+        <button class="le-del" onclick="event.stopPropagation();deleteEntry(${e.id})">✕</button>
+      </div>`;
+    });
+  });
+  list.innerHTML = html;
+}
+
+// ══════════════════════════════════════════
+// LIGHTBOX
+// ══════════════════════════════════════════
+function openLightbox(key) {
+  try {
+    const el = document.querySelector('#sl-' + key + ' .sl-img');
+    if (!el) return;
+    document.getElementById('lightboxImg').src = el.src;
+    document.getElementById('lightboxName').textContent = el.getAttribute('data-name') || '';
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  } catch(e) {}
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+renderDays();
+renderShop();
+renderLedger();
+
+// Restore last active tab
+(function() {
+  try {
+    const lastTab = sessionStorage.getItem('activeTab');
+    if(lastTab && lastTab !== 'home') {
+      const btn = document.querySelector(`[data-tab="${lastTab}"]`);
+      if(btn) switchTab(lastTab, btn);
+      return;
+    }
+  } catch(e){}
+  document.getElementById('editFab').classList.remove('visible');
+})();
+</script>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-name" id="lightboxName"></div>
+</div>
+</body>
+</html>
